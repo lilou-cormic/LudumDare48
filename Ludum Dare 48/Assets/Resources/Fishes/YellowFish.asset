@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d9fb9f7397b5e46b3d34f6d712e568, type: 3}
+  m_Name: YellowFish
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 1886185311247771238, guid: d45419f294730d54f9eb7e6c72acdd42, type: 3}
+  Count: 3
+  Spacing: -1

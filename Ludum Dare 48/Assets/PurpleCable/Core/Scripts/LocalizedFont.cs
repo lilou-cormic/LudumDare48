@@ -26,7 +26,7 @@ namespace PurpleCable
 
         private void SetTextFont()
         {
-            Text.font = TextManager.CurrFont;
+            Text.font = TextManager.CurrFont ?? Text.font;
         }
 
         private void TextManager_LanguageChanged()

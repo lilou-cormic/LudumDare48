@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Fish
+    uniqueID: 514856727
+    locked: 0
+  - name: Submarine
+    uniqueID: 1130410251
+    locked: 0
+  - name: Torpedo
+    uniqueID: 1113724131
+    locked: 0
+  - name: Explosion
+    uniqueID: 3388987957
+    locked: 0
+  - name: Wall
+    uniqueID: 1198952757
+    locked: 0
+  - name: HUD
+    uniqueID: 1169070029
+    locked: 0
