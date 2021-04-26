@@ -8,7 +8,7 @@ public class MoveAndWrapUp : MoveAndWrap
 
     protected override float MoveDistance => 15;
 
-    protected override float Speed => 1;
+    protected override float Speed =>  GameManager.Speed;
 
     protected override bool IsAtLimit()
     {

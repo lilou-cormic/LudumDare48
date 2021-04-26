@@ -5,7 +5,7 @@ public class UIHealth : MonoBehaviour
 {
     [SerializeField] Health Health = null;
 
-    UIHealthPoint[] healthPoints;
+    private UIHealthPoint[] healthPoints;
 
     private void Awake()
     {

@@ -336,6 +336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2823800662759689913, guid: 03e1b14f6228a1948965979d24c652c5, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 415d3120a150ab648a2c7120b671a3a1, type: 3}
     - target: {fileID: 4406107484264513081, guid: 03e1b14f6228a1948965979d24c652c5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -380,6 +384,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4406107484264513086, guid: 03e1b14f6228a1948965979d24c652c5, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 415d3120a150ab648a2c7120b671a3a1, type: 3}
     - target: {fileID: 4406107484264513087, guid: 03e1b14f6228a1948965979d24c652c5, type: 3}
       propertyPath: m_Name
       value: MusicPlayer

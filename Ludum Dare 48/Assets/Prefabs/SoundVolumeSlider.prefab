@@ -60,7 +60,7 @@ MonoBehaviour:
   Slider: {fileID: 7432818830197592433}
   LabelText: {fileID: 8884118075723507680}
   Label: Sounds
-  TestSound: {fileID: 8300000, guid: 4db09ab3c163911429a1e23fa8b7ab8d, type: 3}
+  TestSound: {fileID: 8300000, guid: 6661661c35e76da4fadd8bb6ad1c1c70, type: 3}
 --- !u!1001 &3013342810093769965
 PrefabInstance:
   m_ObjectHideFlags: 0

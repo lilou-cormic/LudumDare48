@@ -5,14 +5,38 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _current = null;
 
-    [SerializeField] float _Speed = 1f;
+    [SerializeField] float _Speed = 1.5f;
     public static float Speed => _current._Speed;
 
     [SerializeField] FishPool FishPool = null;
 
+    [SerializeField] HealthPickupPool HealthPickupPool = null;
+
+    [SerializeField] TorpedoPickupPool TorpedoPickupPool = null;
+
+    [SerializeField] SpriteRenderer Background = null;
+
+    [SerializeField] GameObject PausePanel = null;
+
     public static FishCollection FishCollection { get; private set; }
 
-    public static bool IsGamePaused { get; internal set; }
+    private bool _IsPaused = false;
+    private bool IsPaused
+    {
+        get => _IsPaused;
+
+        set
+        {
+            _IsPaused = value;
+
+            Time.timeScale = (_IsPaused ? 0 : 1);
+
+            if (PausePanel != null)
+                PausePanel.gameObject.SetActive(_IsPaused);
+        }
+    }
+
+    public static bool IsGamePaused => _current.IsPaused;
 
     public static bool IsGameOver { get; internal set; }
 
@@ -25,18 +49,30 @@ public class GameManager : MonoBehaviour
         FishCollection = new FishCollection();
     }
 
+    private void OnDestroy()
+    {
+        UnPause();
+
+        _current = null;
+    }
+
     private void Start()
     {
-        IsGamePaused = false;
+        IsPaused = false;
         IsGameOver = false;
 
         ScoreManager.ResetScore();
 
-        InvokeRepeating(nameof(SpeedUp), 10, 10f);
+        InvokeRepeating(nameof(SpeedUp), 10, 10);
+
+        InvokeRepeating(nameof(SpawnPickup), 7, 7);
     }
 
     private void Update()
     {
+        if (Input.GetButtonDown("Pause") || (IsPaused && Input.GetButtonDown("Cancel")))
+            IsPaused = !IsPaused;
+
         if (IsGamePaused)
             return;
 
@@ -78,6 +114,33 @@ public class GameManager : MonoBehaviour
         if (IsGamePaused || IsGameOver)
             return;
 
-        _Speed += 0.1f;
+        _Speed += 0.5f;
+
+        Background.color = Color.HSVToRGB(0, 0, (1 - (_Speed - 1.5f) / 5));
+    }
+
+    private void SpawnPickup()
+    {
+        if (IsGamePaused)
+            return;
+
+        if (Random.value > 0.9f)
+            return;
+
+        if (Random.value > 0.5f)
+        {
+            HealthPickup healthPickup = HealthPickupPool.GetItem();
+            healthPickup.transform.position = new Vector3((Random.value * 5) - 2.5f, -7.5f, 0);
+        }
+        else
+        {
+            TorpedoPickup torpedoPickup = TorpedoPickupPool.GetItem();
+            torpedoPickup.transform.position = new Vector3((Random.value * 5) - 2.5f, -7.5f, 0);
+        }
+    }
+
+    public void UnPause()
+    {
+        IsPaused = false;
     }
 }

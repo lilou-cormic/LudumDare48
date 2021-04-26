@@ -1,4 +1,5 @@
 using PurpleCable;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,16 +9,36 @@ public class Player : MonoBehaviour
 {
     [SerializeField] SpriteRenderer SpriteRenderer = null;
 
+    [SerializeField] TorpedoPool TorpedoPool = null;
+
+    [SerializeField] Transform TorpedoSpawnPoint = null;
+
+    [SerializeField] GameObject Electricity = null;
+
+    [SerializeField] AudioClip GameOverSound = null;
+
+    [SerializeField] AudioClip HurtSound = null;
+
+    [SerializeField] AudioClip ShootSound = null;
+
+    public int TorpedoCount { get; set; } = 3;
+
     private Health health = null;
 
     private bool _isDead = false;
 
     private bool _isGettingHit = false;
 
+    private int _maxTorpedoCount = 5;
+
+    public event Action TorpedoCountChanged;
+
     private void Awake()
     {
         health = GetComponent<Health>();
         health.HPDepleted += Health_HPDepleted;
+
+        Electricity.SetActive(false);
     }
 
     private void OnDestroy()
@@ -38,11 +59,15 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(2.2f, transform.position.y, 0);
         else if (transform.position.x < -2.2f)
             transform.position = new Vector3(-2.2f, transform.position.y, 0);
+
+        if (Input.GetButtonDown("Fire1"))
+            Shoot();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GetHit();
+        if (collision.CompareTag("Enemy"))
+            GetHit();
     }
 
     private void Die()
@@ -59,9 +84,13 @@ public class Player : MonoBehaviour
     {
         GameManager.IsGameOver = true;
 
+        yield return new WaitForSeconds(0.2f);
+
+        GameOverSound.Play();
+
         ScoreManager.SetHighScore();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
 
         SceneManager.LoadScene("GameOver");
     }
@@ -79,6 +108,8 @@ public class Player : MonoBehaviour
     private IEnumerator DoGetHit()
     {
         _isGettingHit = true;
+
+        HurtSound.Play();
 
         health.ChangeHP(-1);
 
@@ -107,6 +138,42 @@ public class Player : MonoBehaviour
         SpriteRenderer.enabled = true;
     }
 
+    private void Shoot()
+    {
+        if (TorpedoCount == 0)
+            return;
+
+        ShootSound.Play();
+
+        Torpedo torpedo = TorpedoPool.GetItem();
+        torpedo.transform.position = TorpedoSpawnPoint.transform.position;
+
+        TorpedoCount--;
+
+        TorpedoCountChanged.Invoke();
+    }
+
+    public void AddTorpedo()
+    {
+        if (TorpedoCount < _maxTorpedoCount)
+            TorpedoCount++;
+
+        TorpedoCountChanged.Invoke();
+    }
+
+    public void Electrify()
+    {
+        StartCoroutine(DoElectrify());
+    }
+
+    private IEnumerator DoElectrify()
+    {
+        Electricity.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        Electricity.SetActive(false);
+    }
 
     private void Health_HPDepleted(Health health)
     {

@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 6744121432157784250}
   - component: {fileID: 6744121432157784251}
   - component: {fileID: 1587523838620300162}
+  - component: {fileID: 4777169750624575115}
   - component: {fileID: 7543553711344524731}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fish
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 514856727
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2a395fcf6e2751d47b51f63e67c2e461, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,6 +95,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74274fdb77f7089419df0fd18d5dee88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4777169750624575115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744121432157784252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634092088f62b674899d67941a3d3204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!70 &7543553711344524731

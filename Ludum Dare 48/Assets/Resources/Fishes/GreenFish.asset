@@ -15,3 +15,4 @@ MonoBehaviour:
   Prefab: {fileID: 2217630219905421767, guid: 3b6847c968727ae4e9bf542a6abbb7c1, type: 3}
   Count: 2
   Spacing: -1
+  SkeletonImage: {fileID: 21300000, guid: d525b7288ee3a33409a289874b98f787, type: 3}

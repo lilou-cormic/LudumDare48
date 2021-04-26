@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX
@@ -11,10 +13,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Items
+  - PlayerBullet
   - 
   - 
   - 
@@ -41,14 +43,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Items
+    uniqueID: 4237242747
+    locked: 0
   - name: Fish
     uniqueID: 514856727
     locked: 0
-  - name: Submarine
-    uniqueID: 1130410251
-    locked: 0
   - name: Torpedo
     uniqueID: 1113724131
+    locked: 0
+  - name: Submarine
+    uniqueID: 1130410251
     locked: 0
   - name: Explosion
     uniqueID: 3388987957

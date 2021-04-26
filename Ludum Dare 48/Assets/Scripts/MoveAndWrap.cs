@@ -19,7 +19,7 @@ public abstract class MoveAndWrap : MonoBehaviour
     private void Update()
     {
         if (IsAtLimit())
-            transform.position -= Direction * MoveDistance;
+            OnLimitReached();
     }
 
     private void Move()
@@ -27,11 +27,16 @@ public abstract class MoveAndWrap : MonoBehaviour
         if (!gameObject.activeSelf)
             return;
 
-        transform.position += Direction * (float)Math.Round(0.02f * Speed * GameManager.Speed, 2);
+        transform.position += Direction * (float)Math.Round(0.02f * Speed, 3);
     }
 
     protected virtual bool IsAtLimit()
     {
         return transform.position.y >= Threshold;
+    }
+
+    protected virtual void OnLimitReached()
+    {
+        transform.position -= Direction * MoveDistance;
     }
 }

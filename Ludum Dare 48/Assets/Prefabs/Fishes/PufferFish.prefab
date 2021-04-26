@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &561174862511011768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7722348898201364201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13491e361619144cb06d3224097b3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9119338923210276688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,7 +24,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b06a86145862ba5449467382abf91b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Speed: 0.3
+  _Speed: 0.45
 --- !u!1001 &3944209744712363605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20,6 +32,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1587523838620300162, guid: fbcb54363c3438f49afcc38f950e2196, type: 3}
+      propertyPath: Def
+      value: 
+      objectReference: {fileID: 11400000, guid: 5facc9ff0d7c6b1449794b6bcab49a17, type: 2}
     - target: {fileID: 6744121432157784250, guid: fbcb54363c3438f49afcc38f950e2196, type: 3}
       propertyPath: m_RootOrder
       value: 0

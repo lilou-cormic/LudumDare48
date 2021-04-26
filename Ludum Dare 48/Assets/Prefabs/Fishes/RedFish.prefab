@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b06a86145862ba5449467382abf91b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Speed: 0.6
+  _Speed: 0.9
 --- !u!1001 &8458679672043262364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20,6 +20,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1587523838620300162, guid: fbcb54363c3438f49afcc38f950e2196, type: 3}
+      propertyPath: Def
+      value: 
+      objectReference: {fileID: 11400000, guid: b754544d81282284a85aab229b027747, type: 2}
     - target: {fileID: 6744121432157784250, guid: fbcb54363c3438f49afcc38f950e2196, type: 3}
       propertyPath: m_RootOrder
       value: 0
