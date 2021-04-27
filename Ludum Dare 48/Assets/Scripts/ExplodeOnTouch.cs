@@ -14,6 +14,7 @@ public class ExplodeOnTouch : MonoBehaviour
 
         ExplosionManager.SpawnExplosion(transform.position);
 
-        collision.GetComponent<Health>()?.ChangeHP(-1);
+        if (collision.GetComponentInParent<Player>()?.HasShieldDown() == true)
+            collision.GetComponent<Health>()?.ChangeHP(-1);
     }
 }

@@ -228,20 +228,12 @@ PrefabInstance:
       value: Music
       objectReference: {fileID: 0}
     - target: {fileID: 5952405225082827533, guid: 1ab60631bde089347922b09815bab641, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 5952405225082827533, guid: 1ab60631bde089347922b09815bab641, type: 3}
       propertyPath: m_textAlignment
       value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 5952405225082827533, guid: 1ab60631bde089347922b09815bab641, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 5952405225082827533, guid: 1ab60631bde089347922b09815bab641, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4290427578
+      value: 4293125091
       objectReference: {fileID: 0}
     - target: {fileID: 5952405225082827533, guid: 1ab60631bde089347922b09815bab641, type: 3}
       propertyPath: m_TextStyleHashCode

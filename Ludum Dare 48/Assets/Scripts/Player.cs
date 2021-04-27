@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] Transform TorpedoSpawnPoint = null;
 
+    [SerializeField] GameObject Shield = null;
+
     [SerializeField] GameObject Electricity = null;
 
     [SerializeField] AudioClip GameOverSound = null;
@@ -20,6 +22,8 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip HurtSound = null;
 
     [SerializeField] AudioClip ShootSound = null;
+
+    [SerializeField] AudioClip ShieldDownSound = null;
 
     public int TorpedoCount { get; set; } = 3;
 
@@ -31,6 +35,8 @@ public class Player : MonoBehaviour
 
     private int _maxTorpedoCount = 5;
 
+    private bool _isShieldUp = false;
+
     public event Action TorpedoCountChanged;
 
     private void Awake()
@@ -38,6 +44,7 @@ public class Player : MonoBehaviour
         health = GetComponent<Health>();
         health.HPDepleted += Health_HPDepleted;
 
+        Shield.SetActive(false);
         Electricity.SetActive(false);
     }
 
@@ -67,7 +74,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
-            GetHit();
+            GetHit(collision.GetComponent<ElectrifyOnTouch>() != null || collision.GetComponent<ExplodeOnTouch>() != null ? 2f : 1f);
     }
 
     private void Die()
@@ -95,17 +102,45 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene("GameOver");
     }
 
-    private void GetHit()
+    private void GetHit(float duration)
     {
         if (_isDead || _isGettingHit)
             return;
 
-        StartCoroutine(DoGetHit());
+        if (_isShieldUp)
+        {
+            StartCoroutine(DoLoseShield());
+        }
+        else
+        {
+            StartCoroutine(DoGetHit(duration));
 
-        StartCoroutine(DoFlash());
+            StartCoroutine(DoFlash());
+        }
     }
 
-    private IEnumerator DoGetHit()
+    private IEnumerator DoLoseShield()
+    {
+        _isGettingHit = true;
+
+        _isShieldUp = false;
+
+        ShieldDownSound.Play();
+
+        for (float f = 1; f >= 0; f -= 0.2f)
+        {
+            Shield.transform.localScale = new Vector3(f, f, f);
+
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        Shield.SetActive(false);
+
+        _isGettingHit = false;
+    }
+
+
+    private IEnumerator DoGetHit(float duration)
     {
         _isGettingHit = true;
 
@@ -115,7 +150,7 @@ public class Player : MonoBehaviour
 
         SpriteRenderer.color = Color.red;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(duration);
 
         SpriteRenderer.color = Color.white;
 
@@ -163,6 +198,9 @@ public class Player : MonoBehaviour
 
     public void Electrify()
     {
+        if (_isShieldUp)
+            return;
+
         StartCoroutine(DoElectrify());
     }
 
@@ -174,6 +212,30 @@ public class Player : MonoBehaviour
 
         Electricity.SetActive(false);
     }
+
+    public void ActivateShield()
+    {
+        if (_isShieldUp)
+            return;
+
+        _isShieldUp = true;
+
+        StartCoroutine(DoActivateShield());
+    }
+
+    private IEnumerator DoActivateShield()
+    {
+        Shield.SetActive(true);
+
+        for (float f = 0; f <= 1; f += 0.2f)
+        {
+            Shield.transform.localScale = new Vector3(f, f, f);
+
+            yield return new WaitForSeconds(0.005f);
+        }
+    }
+
+    public bool HasShieldDown() => !_isShieldUp;
 
     private void Health_HPDepleted(Health health)
     {

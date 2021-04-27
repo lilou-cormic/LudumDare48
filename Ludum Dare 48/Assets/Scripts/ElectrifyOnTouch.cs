@@ -12,8 +12,9 @@ public class ElectrifyOnTouch : MonoBehaviour
 
         _hasElectrified = true;
 
-        collision.GetComponent<Player>()?.Electrify();
+        collision.GetComponentInParent<Player>()?.Electrify();
 
-        collision.GetComponent<Health>()?.ChangeHP(-1);
+        if (collision.GetComponentInParent<Player>()?.HasShieldDown() == true)
+            collision.GetComponent<Health>()?.ChangeHP(-1);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using PurpleCable;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -13,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] HealthPickupPool HealthPickupPool = null;
 
     [SerializeField] TorpedoPickupPool TorpedoPickupPool = null;
+
+    [SerializeField] ShieldPickupPool ShieldPickupPool = null;
 
     [SerializeField] SpriteRenderer Background = null;
 
@@ -65,7 +68,7 @@ public class GameManager : MonoBehaviour
 
         InvokeRepeating(nameof(SpeedUp), 10, 10);
 
-        InvokeRepeating(nameof(SpawnPickup), 7, 7);
+        InvokeRepeating(nameof(SpawnPickup), 5, 5);
     }
 
     private void Update()
@@ -119,24 +122,46 @@ public class GameManager : MonoBehaviour
         Background.color = Color.HSVToRGB(0, 0, (1 - (_Speed - 1.5f) / 5));
     }
 
+    private List<PoolableItem> ItemBag = new List<PoolableItem>();
+
     private void SpawnPickup()
     {
         if (IsGamePaused)
             return;
 
-        if (Random.value > 0.9f)
+        if (Random.value >= 0.9f)
             return;
 
-        if (Random.value > 0.5f)
+        if (ItemBag.Count == 0)
         {
-            HealthPickup healthPickup = HealthPickupPool.GetItem();
-            healthPickup.transform.position = new Vector3((Random.value * 5) - 2.5f, -7.5f, 0);
+            for (int i = 0; i < 3; i++)
+            {
+                HealthPickup healthPickup = HealthPickupPool.GetItem();
+                healthPickup.gameObject.SetActive(false);
+
+                ItemBag.Add(healthPickup);
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                ShieldPickup shieldPickup = ShieldPickupPool.GetItem();
+                shieldPickup.gameObject.SetActive(false);
+
+                ItemBag.Add(shieldPickup);
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                TorpedoPickup torpedoPickup = TorpedoPickupPool.GetItem();
+                torpedoPickup.gameObject.SetActive(false);
+
+                ItemBag.Add(torpedoPickup);
+            }
         }
-        else
-        {
-            TorpedoPickup torpedoPickup = TorpedoPickupPool.GetItem();
-            torpedoPickup.transform.position = new Vector3((Random.value * 5) - 2.5f, -7.5f, 0);
-        }
+
+        PoolableItem item = ItemBag.ToArray().GetRandom();
+        item.transform.position = new Vector3((Random.value * 5) - 2.5f, -7.5f, 0);
+        ((IPoolable)item).SetAsInUse();
     }
 
     public void UnPause()

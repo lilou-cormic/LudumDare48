@@ -595,6 +595,14 @@ PrefabInstance:
       value: SFX
       objectReference: {fileID: 0}
     - target: {fileID: 8884118075723507680, guid: 124f85dc758824643aadcdd289d21a01, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884118075723507680, guid: 124f85dc758824643aadcdd289d21a01, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884118075723507680, guid: 124f85dc758824643aadcdd289d21a01, type: 3}
       propertyPath: m_textInfo.lineCount
       value: 1
       objectReference: {fileID: 0}
@@ -824,6 +832,14 @@ PrefabInstance:
     - target: {fileID: 7432818830197592438, guid: 34f68e286460bde478f474fecc1df1d3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884118075723507680, guid: 34f68e286460bde478f474fecc1df1d3, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884118075723507680, guid: 34f68e286460bde478f474fecc1df1d3, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 8884118075723507680, guid: 34f68e286460bde478f474fecc1df1d3, type: 3}
       propertyPath: m_textInfo.lineCount
