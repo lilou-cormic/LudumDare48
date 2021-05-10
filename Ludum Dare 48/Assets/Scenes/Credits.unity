@@ -573,7 +573,6 @@ GameObject:
   - component: {fileID: 473526007}
   - component: {fileID: 473526010}
   - component: {fileID: 473526008}
-  - component: {fileID: 473526009}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -630,19 +629,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &473526009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 473526006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97761daffdf61d3408bd6de161aa9822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExtraCreditsText: {fileID: 961440661}
 --- !u!222 &473526010
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -858,17 +844,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2048037261337923965, guid: 6e216d8a362c8cb4fb4d3a4e25d5b024, type: 3}
   m_PrefabInstance: {fileID: 1756797568}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &961440661 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2048037261337923964, guid: 6e216d8a362c8cb4fb4d3a4e25d5b024, type: 3}
-  m_PrefabInstance: {fileID: 1756797568}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1224566425
 PrefabInstance:
   m_ObjectHideFlags: 0
